@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    div{text-align:center}
+  </style>
+  
+</head>
+<body>
+<div>
+    <img id="pic" src="https://static.wixstatic.com/media/e49a0a_034cd9b7e74b4cdc84f27daf5a55f539.png/v1/fill/w_480,h_480,al_c,lg_1,q_85,enc_auto/e49a0a_034cd9b7e74b4cdc84f27daf5a55f539.png">    
+</div>
+<div>
+<p id="score">Temmie Flakes=0</p>
+<p id="level">Clicker Level = 1</p>
+<p id="cost"> Cost of Upgrade = 10</p>
+</div>
+<div>
+<button id="upgrade" type="button">Upgrade Clicker</button>
+</div>
+<script>
+    var score = 0
+    var level = 1
+    var cost = 10
+    var exponent = 1
+    img = document.getElementById("pic");
+      function reactionpt2(){
+      img.style.transform = "scale(1)" 
+      img.style.transition = "transform 0.1s ease" 
+      }
+      function reaction()
+      {
+        img.style.transform = "scale(1.1)"
+        img.style.transition = "transform 0.1s ease"
+        setTimeout(reactionpt2, 100)
+      }
+      function upgrade(){
+      if(score >= cost){
+      level = level + 1  
+      document.getElementById("level").innerHTML = "Clicker Level = " + level
+      score = score - cost
+      document.getElementById("score").innerHTML = "Temmie Flakes = " + score
+      exponent = exponent + 0.1 
+      cost = cost * 2^exponent
+      document.getElementById("cost").innerHTML = "Cost of Upgrade = " + cost
+      console.log(exponent)
+      console.log(level)
+      console.log(cost)
+      }
+      else{
+      alert("You are broke! Get more Tem Flakes!")  
+      }
+      }
+      function up(){
+      score= score + level
+      document.getElementById("score").innerHTML = "Temmie Flakes = " + score;
+      console.log(score)
+      }
+     document.getElementById("pic").addEventListener("click", up)
+     document.getElementById("upgrade").addEventListener("click", upgrade)
+     document.getElementById("pic").addEventListener("mousedown", reaction)
+  </script>
+</body>
+</html>
