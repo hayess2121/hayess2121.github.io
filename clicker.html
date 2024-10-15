@@ -6,6 +6,9 @@
   <title>JS Bin</title>
   <style>
     div{text-align:center}
+    div#upgrade_menu{text-align:left}
+    div#autoclicker{text-align:right}
+    
   </style>
   
 </head>
@@ -16,17 +19,74 @@
 <div>
 <p id="score">Temmie Flakes=0</p>
 <p id="level">Clicker Level = 1</p>
+<p id ="count">Number of autoclickers = 0</p>
+<p id="autolevel">Autoclicker level = 1</p>
+</div>
+<div id="upgrade_menu">
+<button id="upgrade" type="button">Upgrade Clicker</button>
 <p id="cost"> Cost of Upgrade = 10</p>
 </div>
-<div>
-<button id="upgrade" type="button">Upgrade Clicker</button>
+<div id="autoclicker">
+<button id="auto"type="button">Buy Autoclicker</button>
+<p id="auto_cost"> Next auto clicker costs 100 tem flakes</p>
+<button id="autolevelbut"type="button">Upgrade autoclicker</button>
+<p id="auto_upgrade_cost"> Next upgrade costs 1000 tem flakes</p>
 </div>
 <script>
     var score = 0
     var level = 1
     var cost = 10
     var exponent = 1
+    var autoclickers = 0 
+    var autoclickercost = 100
+    var autoexponent = 1 
+    var autoclickerlevel = 1 
+    var autoupgradecost = 1000
+    var autoupcostexp = 1
     img = document.getElementById("pic");
+      setInterval(autoclick, 400)
+      function upgradeautoclick()
+      {
+        if(score >= autoupgradecost )
+        {
+          autoclickerlevel = autoclickerlevel + 1
+          document.getElementById("autolevel").innerHTML = "Autoclicker level = " + autoclickerlevel
+          score = score - autoupgradecost
+          document.getElementById("score").innerHTML = "Temmie Flakes = " + score
+          autoupcostexp = autoupcostexp + 0.1
+          autoupgradecost = autoupgradecost * 2 ^ autoupcostexp
+          document.getElementById("auto_upgrade_cost").innerHTML = "Autoclicker upgrade cost = " + autoupgradecost
+          
+        }
+        else
+        {
+          alert("You are broke! Get more tem flakes!")
+        }
+      }
+      function buyautoclick()
+      {
+        if(score >= autoclickercost)
+        {
+          autoclickers = autoclickers + 1
+          document.getElementById("count").innerHTML = "Number of autoclickers = " + autoclickers
+          console.log(autoclickers)
+          score = score - autoclickercost
+          document.getElementById("score").innerHTML = "Temmie Flakes = " + score
+          autoexponent = autoexponent + 0.1 
+          autoclickercost = autoclickercost * 2 ^ autoexponent 
+          document.getElementById("auto_cost").innerHTML = "Next auto clicker costs " + autoclickercost + " tem flakes"
+        }
+        else
+        {
+          alert("You are broke! Get more tem flakes!")
+        }
+      }
+      function autoclick()
+      {
+      score = score + (autoclickers * autoclickerlevel)
+      document.getElementById("score").innerHTML = "Temmie Flakes = " + score
+      console.log(score)
+      }
       function reactionpt2(){
       img.style.transform = "scale(1)" 
       img.style.transition = "transform 0.1s ease" 
@@ -51,7 +111,7 @@
       console.log(cost)
       }
       else{
-      alert("You are broke! Get more Tem Flakes!")  
+      alert("You are broke! Get more tem flakes!")  
       }
       }
       function up(){
@@ -62,6 +122,8 @@
      document.getElementById("pic").addEventListener("click", up)
      document.getElementById("upgrade").addEventListener("click", upgrade)
      document.getElementById("pic").addEventListener("mousedown", reaction)
+     document.getElementById("auto").addEventListener("click", buyautoclick)
+     document.getElementById("autolevelbut").addEventListener("click", upgradeautoclick)
   </script>
 </body>
 </html>
