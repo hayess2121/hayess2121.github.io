@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bun</title>
+  <style>
+    p#color {
+      color: red
+    }
+
+    img#im {
+      scale: 100px
+    }
+  </style>
+
+</head>
+
+<body>
+  <img id="image" src="https://cdn.britannica.com/70/234870-050-D4D024BB/Orange-colored-cat-yawns-displaying-teeth.jpg">
+  <p id="color">color go BRRRRRRR</p>
+  <img id="im"
+    src="https://static.wikia.nocookie.net/protagonists/images/0/01/Sans_undertale.jpg/revision/latest?cb=20201229053243">
+  <script>
+
+
+
+    document.getElementById("color").addEventListener("click", colors)
+    function colors() {
+      document.getElementById("color").style.color = "blue";
+    }
+
+    document.getElementById("image").addEventListener("click", alerts)
+    function alerts() {
+      alert("cat!")
+    }
+
+    document.getElementById("im").addEventListener("mouseover",large)
+    function large() {
+      document.getElementById("im").style.height = "1000px"
+    }
+
+  </script>
+</body>
+
+</html>
