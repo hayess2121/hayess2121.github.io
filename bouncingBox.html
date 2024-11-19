@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Box Bouncing </title>
+  <style>
+  div{
+    width:30px;
+    height:30px;
+    background-color:red;
+    position:absolute;
+    top:0px;
+    left:0px;
+    rotate:0deg;
+  }  
+  </style>
+</head>
+<body>
+    <div id="bix">
+
+    </div>
+
+</body>
+</html>
+<script>
+var horzspeed = 2.5
+var vertspeed = 2
+var horzpos = 0
+var vertpos = 0
+var topbound = 0
+var leftbound = 0
+var bottombound = 620
+var rightbound = 1340
+var speedinv = -1
+var randomax = 5
+var angle = 0
+var rotatesped = 1
+function speed()
+{
+horzspeed = horzspeed + Math.floor(Math.random()*randomax)
+vertspeed = vertspeed + Math.floor(Math.random()*randomax)  
+horzspeed = horzspeed - Math.floor(Math.random()*randomax)
+vertspeed = vertspeed - Math.floor(Math.random()*randomax)  
+}
+function move()
+{
+if(horzpos<leftbound)
+{
+horzspeed= horzspeed * speedinv
+rotatesped = rotatesped * -1
+}
+if(horzpos>rightbound)
+{
+horzspeed= horzspeed * speedinv
+rotatesped = rotatesped * -1
+}
+if(vertpos<topbound)
+{
+vertspeed= vertspeed * speedinv
+rotatesped = rotatesped * -1
+}
+if(vertpos>bottombound)
+{
+vertspeed= vertspeed * speedinv
+rotatesped = rotatesped * -1
+}
+document.getElementById("bix").style.top = vertpos + vertspeed + "px"
+document.getElementById("bix").style.left = horzpos + horzspeed + "px"
+document.getElementById("bix").style.rotate = angle + rotatesped + "deg"
+angle = angle + rotatesped
+vertpos = vertpos + vertspeed
+horzpos = horzpos + horzspeed
+
+}
+document.addEventListener("click",speed)
+setInterval(move,5)
+</script>
