@@ -42,11 +42,19 @@ function doa() //main function that does things
         }
         else if(number === 97) //seizure mode
         {
-        
+            alert("seizure mode incoming. Leave now if you are epileptic.")
+            setInterval(green,10)
+            setInterval(blue,11)
+            setInterval(red,12)
+            setInterval(yellow,13)
+            setInterval(purple,14)
+            setInterval(orange,15)
+            setInterval(indigo,16) 
         }
         else if(number === 96)//tells you to mess off
         {
-            alert("Screw off")    
+            alert("Screw off")
+             
         }
         else if(number === 69)//rick roll
         {
@@ -73,7 +81,14 @@ function doa() //main function that does things
         }
         else if(number === 97) // seizure mode
         {
-        
+            alert("seizure mode incoming. Leave now if you are epileptic.")
+            setInterval(green,10)
+            setInterval(blue,11)
+            setInterval(red,12)
+            setInterval(yellow,13)
+            setInterval(purple,14)
+            setInterval(orange,15)
+            setInterval(indigo,16) 
         }
         else if(number === 96)//tells you to mess off
         {
