@@ -1,19 +1,18 @@
 document.getElementById("button").addEventListener("click", doa) // event listener do not delete
 //variable declarations below
 var number
-var test
 var debug = false
 //variable declarations above
 //redirects below here
 function page_redirect()
 { 
-window.location = "https://hayess2121.github.io/clicker.html";
+    window.location = "https://hayess2121.github.io/clicker.html";
 }
 function page_redirectdos()
 { 
     window.location = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 }
- //redirects above here
+//redirects above here
 
 //do not touch this
 function random()
@@ -33,13 +32,13 @@ function doa() //main function that does things
     {
         if(number === 99) // redirects to clicker
         {
-        page_redirect()
+            page_redirect()
         }
         else if(number === 98) // blows up button
         {
-        button.style.transform = "scale(20)"
-        button.style.transition = "transform 10s ease"
-        setTimeout(blowup,10100)
+            button.style.transform = "scale(20)"
+            button.style.transition = "transform 10s ease"
+            setTimeout(blowup,10100)
         }
         else if(number === 97) //seizure mode
         {
@@ -47,25 +46,30 @@ function doa() //main function that does things
         }
         else if(number === 96)//tells you to mess off
         {
-            alert("mess off")    
+            alert("Screw off")    
         }
-        else if(number === 69) //rick roll
+        else if(number === 69)//rick roll
         {
-        page_redirectdos()
+            page_redirectdos()
+        }
+        else if(number === 0)//error 404
+        {
+            alert("ERROR 404 NOT FOUND")
+            document.body.style.backgroundImage = "url(https://upload.wikimedia.org/wikipedia/commons/3/3b/Windows_9X_BSOD.png)"
         }
         }
     else
         {
-        random()
+        random()//generates a random number
         if(number === 99)// redirects to clicker
         {
-        page_redirect()
+            page_redirect()
         }
         else if(number === 98)// blows up button
         {
-        button.style.transform = "scale(20)"
-        button.style.transition = "transform 10s ease"
-        setTimeout(blowup,10100)
+            button.style.transform = "scale(20)"
+            button.style.transition = "transform 10s ease"
+            setTimeout(blowup,10100)
         }
         else if(number === 97) // seizure mode
         {
@@ -73,11 +77,16 @@ function doa() //main function that does things
         }
         else if(number === 96)//tells you to mess off
         {
-            alert("mess off")    
+            alert("Screw off")    
         }
         else if(number === 69) //rick roll
         {
-        page_redirectdos()
+            page_redirectdos()
+        }
+        else if(number === 0)//error 404
+        {
+            alert("ERROR 404 NOT FOUND")
+            document.body.style.backgroundImage = "url(https://upload.wikimedia.org/wikipedia/commons/3/3b/Windows_9X_BSOD.png)"
         }
     }
     return number
@@ -85,8 +94,8 @@ function doa() //main function that does things
 // the random shit functions
 function blowup() 
 {
-button.style.transition = "transform 0.1s ease"
-button.style.transform = "scale(1)"    
+    button.style.transition = "transform 0.1s ease"
+    button.style.transform = "scale(1)"    
 }
 //color functions for seizure mode below
 
@@ -106,13 +115,17 @@ function purple()//makes background purple
 {
     document.body.style.backgroundColor = "purple"    
 }
-
-
-
-
-
-
-
-
+function yellow()//makes background yellow
+{
+    document.body.style.backgroundColor = "yellow"    
+}
+function orange()//makes the background orange
+{
+    document.body.style.backgroundColor = "orange"    
+}
+function indigo()//makes the background indigo
+{
+    document.body.style.backgroundColor = "indigo"    
+}
 
 //color functions for seizure mode above
