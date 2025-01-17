@@ -18,10 +18,6 @@ function page_redirectdos()
 function random()
 {
     number = Math.floor(Math.random()*100)
-    if(debug === true)
-    {
-        console.log(number)
-    }
     return number
 }
 //do not touch this
@@ -43,13 +39,13 @@ function doa() //main function that does things
         else if(number === 97) //seizure mode
         {
             alert("seizure mode incoming. Leave now if you are epileptic.")
-            setInterval(green,10)
-            setInterval(blue,11)
-            setInterval(red,12)
-            setInterval(yellow,13)
-            setInterval(purple,14)
-            setInterval(orange,15)
-            setInterval(indigo,16) 
+            setInterval(green,5)
+            setInterval(blue,6)
+            setInterval(red,7)
+            setInterval(yellow,8)
+            setInterval(purple,9)
+            setInterval(orange,10)
+            setInterval(indigo,11) 
         }
         else if(number === 96)//tells you to mess off
         {
@@ -82,13 +78,13 @@ function doa() //main function that does things
         else if(number === 97) // seizure mode
         {
             alert("seizure mode incoming. Leave now if you are epileptic.")
-            setInterval(green,10)
-            setInterval(blue,11)
-            setInterval(red,12)
-            setInterval(yellow,13)
-            setInterval(purple,14)
-            setInterval(orange,15)
-            setInterval(indigo,16) 
+            setInterval(green,5)
+            setInterval(blue,6)
+            setInterval(red,7)
+            setInterval(yellow,8)
+            setInterval(purple,9)
+            setInterval(orange,10)
+            setInterval(indigo,11) 
         }
         else if(number === 96)//tells you to mess off
         {
