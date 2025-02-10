@@ -42,13 +42,13 @@ function doa() //main function that does things
         else if(number === 97) //seizure mode
         {
             alert("seizure mode incoming. Leave now if you are epileptic.")
-            setInterval(green,5)
-            setInterval(blue,6)
-            setInterval(red,7)
-            setInterval(yellow,8)
-            setInterval(purple,9)
-            setInterval(orange,10)
-            setInterval(indigo,11) 
+            setInterval(colors.green,5)
+            setInterval(colors.blue,6)
+            setInterval(colors.red,7)
+            setInterval(colors.yellow,8)
+            setInterval(colors.purple,9)
+            setInterval(colors.orange,10)
+            setInterval(colors.indigo,11) 
         }
         else if(number === 96)//tells you to mess off
         {
@@ -87,13 +87,13 @@ function doa() //main function that does things
         else if(number === 97) // seizure mode
         {
             alert("seizure mode incoming. Leave now if you are epileptic.")
-            setInterval(green,5)
-            setInterval(blue,6)
-            setInterval(red,7)
-            setInterval(yellow,8)
-            setInterval(purple,9)
-            setInterval(orange,10)
-            setInterval(indigo,11) 
+            setInterval(colors.green,5)
+            setInterval(colors.blue,6)
+            setInterval(colors.red,7)
+            setInterval(colors.yellow,8)
+            setInterval(colors.purple,9)
+            setInterval(colors.orange,10)
+            setInterval(colors.indigo,11) 
         }
         else if(number === 96)//tells you to mess off
         {
@@ -124,34 +124,34 @@ function blowup()
     button.style.transform = "scale(1)"    
 }
 //color functions for seizure mode below
-
-function green()//makes background green
-{
+var colors = {
+    green : function ()//makes background green
+    {
     document.body.style.backgroundColor = "green"
+    },
+    blue : function ()//makes background blue
+    {
+        document.body.style.backgroundColor = "blue"
+    },
+    red : function ()//makes background red
+    {
+        document.body.style.backgroundColor = "red"    
+    },
+    purple : function ()//makes background purple
+    {
+        document.body.style.backgroundColor = "purple"    
+    },
+    yellow : function ()//makes background yellow
+    {
+        document.body.style.backgroundColor = "yellow"    
+    },
+    orange : function ()//makes the background orange
+    {
+        document.body.style.backgroundColor = "orange"    
+    },
+    indigo : function ()//makes the background indigo
+    {
+        document.body.style.backgroundColor = "indigo"    
+    },
 }
-function blue()//makes background blue
-{
-    document.body.style.backgroundColor = "blue"
-}
-function red()//makes background red
-{
-    document.body.style.backgroundColor = "red"    
-}
-function purple()//makes background purple
-{
-    document.body.style.backgroundColor = "purple"    
-}
-function yellow()//makes background yellow
-{
-    document.body.style.backgroundColor = "yellow"    
-}
-function orange()//makes the background orange
-{
-    document.body.style.backgroundColor = "orange"    
-}
-function indigo()//makes the background indigo
-{
-    document.body.style.backgroundColor = "indigo"    
-}
-
 //color functions for seizure mode above
