@@ -4,13 +4,16 @@ var number
 var debug = false
 //variable declarations above
 //redirects below here
-function page_redirect()
-{ 
-    window.location = "https://hayess2121.github.io/clicker.html";
-}
-function page_redirectdos()
-{ 
-    window.location = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+var redirects = 
+{
+    clicker : function()
+    { 
+        window.location = "https://hayess2121.github.io/clicker.html";
+    },
+    rick_roll : function ()
+    { 
+        window.location = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    },
 }
 //redirects above here
 
@@ -28,7 +31,7 @@ function doa() //main function that does things
     {
         if(number === 99) // redirects to clicker
         {
-            page_redirect()
+            redirects.clicker()
         }
         else if(number === 98) // blows up button
         {
@@ -52,9 +55,15 @@ function doa() //main function that does things
             alert("Screw off")
              
         }
+        else if(number === 95) // Im working on making this function pull your location and displaying it
+        {
+            alert("greer")
+            navigator.geolocation
+            Geolocation.getCurrentPosition()
+        }    
         else if(number === 69)//rick roll
         {
-            page_redirectdos()
+            redirects.rick_roll()
         }
         else if(number === 0)//error 404
         {
@@ -67,7 +76,7 @@ function doa() //main function that does things
         random()//generates a random number
         if(number === 99)// redirects to clicker
         {
-            page_redirect()
+            redirects.clicker()
         }
         else if(number === 98)// blows up button
         {
@@ -90,9 +99,15 @@ function doa() //main function that does things
         {
             alert("Screw off")    
         }
+        else if(number === 95) // Im working on making this function pull your location and displaying it
+        {
+            alert("greer")
+            navigator.geolocation
+            Geolocation.getCurrentPosition()
+        }  
         else if(number === 69) //rick roll
         {
-            page_redirectdos()
+            redirects.rick_roll()
         }
         else if(number === 0)//error 404
         {
