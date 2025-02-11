@@ -1,6 +1,6 @@
 document.getElementById("button").addEventListener("click", doa) // event listener do not delete
 //variable declarations below
-var number
+var number         
 var debug = false
 //variable declarations above
 //redirects below here
@@ -170,9 +170,13 @@ const protectedContent = document.getElementById('protectedContent');
             passwordInput.value = ''; // Clear the input field
             input.style.display = "none"//hides the input
                 
-        } else
+        } else if (enteredPassword === "Rick_Astley")
         {
-            alert('Go fuck yourself'); // Alert for incorrect password
+            redirects.rick_roll()
+        }
+        else
+        {
+            alert("Go Fuck Yourself")    
         }
     });
 //password stuff above
