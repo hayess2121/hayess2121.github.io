@@ -55,12 +55,13 @@ function doa() //main function that does things
             alert("Screw off")
              
         }
-        else if(number === 95) // Im working on making this function pull your location and displaying it
+        else if(number === 95) 
         {
-            alert("greer")
-            navigator.geolocation
-            Geolocation.getCurrentPosition()
+        for(let i = 0 ; i >= 10 ; i = i + 1)
+        {
+            
         }    
+        }
         else if(number === 69)//rick roll
         {
             redirects.rick_roll()
@@ -99,11 +100,9 @@ function doa() //main function that does things
         {
             alert("Screw off")    
         }
-        else if(number === 95) // Im working on making this function pull your location and displaying it
+        else if(number === 95) 
         {
-            alert("greer")
-            navigator.geolocation
-            Geolocation.getCurrentPosition()
+        
         }  
         else if(number === 69) //rick roll
         {
@@ -155,3 +154,24 @@ var colors = {
     },
 }
 //color functions for seizure mode above
+//password stuff below
+const correctPassword = "IEatCrackForBreakfast"; // Set your password here
+const submitButton = document.getElementById('submitButton');
+const passwordInput = document.getElementById('passwordInput');
+const protectedContent = document.getElementById('protectedContent');
+
+    submitButton.addEventListener('click', function() {
+        const enteredPassword = passwordInput.value;
+
+        // Check if the entered password is correct
+        if (enteredPassword === correctPassword) {
+            button.style.display = 'block'; // Show the protected content
+            passwordInput.value = ''; // Clear the input field
+            input.style.display = "none"//hides the input
+                
+        } else
+        {
+            alert('Go fuck yourself'); // Alert for incorrect password
+        }
+        });
+//password stuff above

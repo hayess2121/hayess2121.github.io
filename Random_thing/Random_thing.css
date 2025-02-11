@@ -5,5 +5,11 @@ background-color:gray;
 #button
 {
 margin-top:300px;
+text-align: center;
+display : none
+}
+#input
+{
+margin-top:200px;
 text-align: center
 }
