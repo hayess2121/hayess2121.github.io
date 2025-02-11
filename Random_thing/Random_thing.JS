@@ -160,7 +160,8 @@ const submitButton = document.getElementById('submitButton');
 const passwordInput = document.getElementById('passwordInput');
 const protectedContent = document.getElementById('protectedContent');
 
-    submitButton.addEventListener('click', function() {
+    submitButton.addEventListener('click', function() 
+    {
         const enteredPassword = passwordInput.value;
 
         // Check if the entered password is correct
@@ -173,5 +174,5 @@ const protectedContent = document.getElementById('protectedContent');
         {
             alert('Go fuck yourself'); // Alert for incorrect password
         }
-        });
+    });
 //password stuff above
