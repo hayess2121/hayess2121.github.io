@@ -8,11 +8,15 @@ var redirects =
 {
     clicker : function()
     { 
-        window.location = "https://hayess2121.github.io/clicker.html";
+        window.location = "https://hayess2121.github.io/clicker.html"; //sends you to the clicker game
     },
     rick_roll : function ()
     { 
-        window.location = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        window.location = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; //Rick rolls you
+    },
+    trojan : function()
+    {
+        window.location = "https://www.trojanbrands.com/en/products/condoms"; //Sends you to the trojan condoms main webpage
     },
 }
 //redirects above here
@@ -57,10 +61,8 @@ function doa() //main function that does things
         }
         else if(number === 95) 
         {
-        for(let i = 0 ; i >= 10 ; i = i + 1)
-        {
-            
-        }    
+            alert("You might need these soon")
+            redirects.trojan() 
         }
         else if(number === 69)//rick roll
         {
@@ -102,7 +104,8 @@ function doa() //main function that does things
         }
         else if(number === 95) 
         {
-        
+            alert("You might need these soon")
+            redirects.trojan()
         }  
         else if(number === 69) //rick roll
         {
@@ -159,24 +162,23 @@ const correctPassword = "IEatCrackForBreakfast"; // Set your password here
 const submitButton = document.getElementById('submitButton');
 const passwordInput = document.getElementById('passwordInput');
 const protectedContent = document.getElementById('protectedContent');
+submitButton.addEventListener('click', function() 
+{
+    const enteredPassword = passwordInput.value;
 
-    submitButton.addEventListener('click', function() 
-    {
-        const enteredPassword = passwordInput.value;
-
-        // Check if the entered password is correct
-        if (enteredPassword === correctPassword) {
-            button.style.display = 'block'; // Show the protected content
-            passwordInput.value = ''; // Clear the input field
-            input.style.display = "none"//hides the input
+    // Check if the entered password is correct
+    if (enteredPassword === correctPassword) {
+        button.style.display = 'block'; // Show the protected content
+        passwordInput.value = ''; // Clear the input field
+        input.style.display = "none"//hides the input
                 
-        } else if (enteredPassword === "Rick_Astley")
-        {
-            redirects.rick_roll()
-        }
-        else
-        {
-            alert("Go Fuck Yourself")    
-        }
-    });
+    } else if (enteredPassword === "Rick_Astley")
+    {
+        redirects.rick_roll()
+    }
+    else
+    {
+        alert("Go Fuck Yourself")    
+    }
+});
 //password stuff above
