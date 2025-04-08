@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouncing Ball with Gravity</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        canvas.width = 400;
+        canvas.height = 300;
+
+        var ballX = 200;
+        var ballY = 50;
+        var ballSpeedX = 2;
+        var ballSpeedY = 0;
+        var ballRadius = 10;
+
+        var gravity = 0.2;
+        var bounceFactor = 0.7;
+        var friction = 0.99;
+      
+      
+         setInterval(loop, 10)
+
+        function loop() {
+            ballSpeedY = ballSpeedY + gravity;
+            ballX = ballX + ballSpeedX;
+            ballY = ballY + ballSpeedY;
+
+            if (ballX - ballRadius < 0){              
+                ballSpeedX = -ballSpeedX * friction;
+            }
+              
+              if(ballX + ballRadius > canvas.width) {
+                ballSpeedX = -ballSpeedX * friction;
+            }
+
+            if (ballY + ballRadius > canvas.height) {
+                ballY = canvas.height - ballRadius;
+                ballSpeedY = -ballSpeedY * bounceFactor;
+                ballSpeedX = ballSpeedX * friction;
+            }
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "blue";
+            ctx.beginPath();
+            ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+    </script>
+</body>
+</html>
