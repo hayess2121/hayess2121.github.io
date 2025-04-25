@@ -1,12 +1,29 @@
+@keyframes color
+{
+0% {background-color:red}
+25%{background-color:yellow}
+50%{background-color:blue}
+75%{background-color:green}
+100%{background-color:violet}
+}
+@keyframes blowup
+{
+0%{scale:1}
+99%{scale:20}
+100%{scale:1}
+}
 body
 {
 background-color:gray;
+animation-duration:5ms;
+animation-iteration-count:infinite;
 }
 #button
 {
 margin-top:300px;
 text-align: center;
-display : none
+display : none;
+animation-duration: 10.1s;
 }
 #input
 {

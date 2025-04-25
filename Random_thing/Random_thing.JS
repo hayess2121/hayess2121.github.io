@@ -46,13 +46,7 @@ function doa() //main function that does things
         else if(number === 97) //seizure mode
         {
             alert("seizure mode incoming. Leave now if you are epileptic.")
-            setInterval(colors.green,5)
-            setInterval(colors.blue,6)
-            setInterval(colors.red,7)
-            setInterval(colors.yellow,8)
-            setInterval(colors.purple,9)
-            setInterval(colors.orange,10)
-            setInterval(colors.indigo,11) 
+            document.body.style.animationName = "color"
         }
         else if(number === 96)//tells you to mess off
         {
@@ -83,20 +77,12 @@ function doa() //main function that does things
         }
         else if(number === 98)// blows up button
         {
-            button.style.transform = "scale(20)"
-            button.style.transition = "transform 10s ease"
-            setTimeout(blowup,10100)
+            button.style.animationName = "blowup"
         }
         else if(number === 97) // seizure mode
         {
             alert("seizure mode incoming. Leave now if you are epileptic.")
-            setInterval(colors.green,5)
-            setInterval(colors.blue,6)
-            setInterval(colors.red,7)
-            setInterval(colors.yellow,8)
-            setInterval(colors.purple,9)
-            setInterval(colors.orange,10)
-            setInterval(colors.indigo,11) 
+            document.body.style.animationName = "color"
         }
         else if(number === 96)//tells you to mess off
         {
@@ -120,43 +106,6 @@ function doa() //main function that does things
     return number
 }
 // the random shit functions
-function blowup() 
-{
-    button.style.transition = "transform 0.1s ease"
-    button.style.transform = "scale(1)"    
-}
-//color functions for seizure mode below
-var colors = {
-    green : function ()//makes background green
-    {
-    document.body.style.backgroundColor = "green"
-    },
-    blue : function ()//makes background blue
-    {
-        document.body.style.backgroundColor = "blue"
-    },
-    red : function ()//makes background red
-    {
-        document.body.style.backgroundColor = "red"    
-    },
-    purple : function ()//makes background purple
-    {
-        document.body.style.backgroundColor = "purple"    
-    },
-    yellow : function ()//makes background yellow
-    {
-        document.body.style.backgroundColor = "yellow"    
-    },
-    orange : function ()//makes the background orange
-    {
-        document.body.style.backgroundColor = "orange"    
-    },
-    indigo : function ()//makes the background indigo
-    {
-        document.body.style.backgroundColor = "indigo"    
-    },
-}
-//color functions for seizure mode above
 //password stuff below
 const correctPassword = "IEatCrackForBreakfast"; // Set your password here
 const submitButton = document.getElementById('submitButton');
