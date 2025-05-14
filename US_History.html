@@ -1,3 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matching Game</title>
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: grid;
+            font-family: "Lucida Sans", sans-serif;
+            place-items: center;
+            background-color: #a891c2;
+        }
+
+        /* Input Form Styling */
+        #input-form-container {
+            background-color: #f0f0f0;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: grid; /* Initially shown, JS will hide it */
+            place-items: center;
+            gap: 12px;
+            width: 90%;
+            max-width: 500px; /* Max width for the form */
+        }
+
+        #input-form-container input[type="text"] {
+            padding: 10px;
+            margin-top: 3px; /* Space between label and input */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%; /* Full width within its container */
+            font-size: 14px;
+        }
+
+        #input-form-container button {
+            padding: 12px 25px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        #input-form-container button:hover {
+            background-color: #45a049;
+        }
+
+        #input-form-container h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .input-pair {
+            width: 100%;
+            margin-bottom:10px;
+            text-align: left; /* Align labels to the left */
+        }
         .input-pair label {
             display: block;
             margin-bottom: 2px;
