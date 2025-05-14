@@ -1,0 +1,503 @@
+        .input-pair label {
+            display: block;
+            margin-bottom: 2px;
+            font-weight: bold;
+            color: #555;
+            font-size: 14px;
+        }
+
+        #board {
+            display: none; /* Initially hidden, JS will show it */
+            grid-template-areas:
+                "i1 i2 i3 i4"
+                "s1 s2 s3 s4"
+                "toolbar toolbar toolbar toolbar";
+            padding: clamp(20px, 5vw, 50px); /* Responsive padding */
+            background-color: #87bdbb;
+            justify-items: center;
+            align-items: center;
+            place-items: center;
+            opacity: 1; /* Default to visible when display is not none */
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .images>img {
+            width: clamp(60px, 12vw, 150px); /* Responsive width */
+            height: clamp(60px, 12vw, 150px);
+            object-fit: contain;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            pointer-events: none;
+            user-select: none;
+            border-radius: 5px; /* Slightly rounded images */
+        }
+
+        .images {
+            padding: 5%;
+            width: clamp(80px, 15vw, 180px); /* Responsive width */
+            cursor: pointer;
+        }
+
+        .solutions {
+            padding: 5%;
+            width: clamp(80px, 15vw, 180px); /* Responsive width */
+            height: 3em; /* Fixed height for text containers */
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-origin: center center;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            user-select: none;
+            background-color: #f9f9f9; /* Light background for solution boxes */
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .solutions p {
+            font-size: clamp(0.8rem, 1.5vw, 1.1rem); /* Responsive font size */
+            padding: 5px;
+        }
+
+
+        .toolbar {
+            padding-top: 10%;
+            padding-bottom: 5%;
+            width: clamp(80px, 15vw, 180px);
+        }
+        .toolbar p, .toolbar button {
+             font-size: clamp(0.8rem, 1.5vw, 1.1rem);
+        }
+        .toolbar button {
+            padding: 8px 15px;
+            background-color: #5C6BC0; /* Indigo */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .toolbar button:hover {
+            background-color: #3F51B5;
+        }
+
+
+        #timer { color: darkgreen; font-weight: bold; }
+        #mistakes { color: #C62828; /* Dark Red */ font-weight: bold;}
+        #score { color: #2E7D32; /* Dark Green */ font-weight: bold;}
+
+
+        #image-1 { grid-area: i1; }
+        #image-2 { grid-area: i2; }
+        #image-3 { grid-area: i3; }
+        #image-4 { grid-area: i4; }
+        #solution-1 { grid-area: s1; } /* These divs are containers */
+        #solution-2 { grid-area: s2; }
+        #solution-3 { grid-area: s3; }
+        #solution-4 { grid-area: s4; }
+    </style>
+</head>
+
+<body>
+    <div id="input-form-container">
+        <h2>Setup Your Matching Game</h2>
+        <div class="input-pair">
+            <label for="input-image-1">Image 1 URL:</label>
+            <input type="text" id="input-image-1" placeholder="Enter Image 1 URL" value="https://via.placeholder.com/150/FF0000/FFFFFF?Text=A">
+            <label for="input-solution-1">Solution 1 Text:</label>
+            <input type="text" id="input-solution-1" placeholder="Enter Solution 1 Text" value="Text A">
+        </div>
+        <div class="input-pair">
+            <label for="input-image-2">Image 2 URL:</label>
+            <input type="text" id="input-image-2" placeholder="Enter Image 2 URL" value="https://via.placeholder.com/150/00FF00/FFFFFF?Text=B">
+            <label for="input-solution-2">Solution 2 Text:</label>
+            <input type="text" id="input-solution-2" placeholder="Enter Solution 2 Text" value="Text B">
+        </div>
+        <div class="input-pair">
+            <label for="input-image-3">Image 3 URL:</label>
+            <input type="text" id="input-image-3" placeholder="Enter Image 3 URL" value="https://via.placeholder.com/150/0000FF/FFFFFF?Text=C">
+            <label for="input-solution-3">Solution 3 Text:</label>
+            <input type="text" id="input-solution-3" placeholder="Enter Solution 3 Text" value="Text C">
+        </div>
+        <div class="input-pair">
+            <label for="input-image-4">Image 4 URL:</label>
+            <input type="text" id="input-image-4" placeholder="Enter Image 4 URL" value="https://via.placeholder.com/150/FFFF00/000000?Text=D">
+            <label for="input-solution-4">Solution 4 Text:</label>
+            <input type="text" id="input-solution-4" placeholder="Enter Solution 4 Text" value="Text D">
+        </div>
+        <button id="confirm-inputs-btn">Confirm and Start Game</button>
+    </div>
+
+    <div id="board">
+        <div id="image-1" class="images"> <img id="imageTag-1" src="" alt="Image A"/> </div>
+        <div id="image-2" class="images"> <img id="imageTag-2" src="" alt="Image B"/> </div>
+        <div id="image-3" class="images"> <img id="imageTag-3" src="" alt="Image C"/> </div>
+        <div id="image-4" class="images"> <img id="imageTag-4" src="" alt="Image D"/> </div>
+
+        <div id="solution-1" class="solutions"> <p id="solutionTag-1"></p> </div>
+        <div id="solution-2" class="solutions"> <p id="solutionTag-2"></p> </div>
+        <div id="solution-3" class="solutions"> <p id="solutionTag-3"></p> </div>
+        <div id="solution-4" class="solutions"> <p id="solutionTag-4"></p> </div>
+
+        <div id="timer" class="toolbar"> <p>Timer: 0.00</p> </div>
+        <div id="mistakes" class="toolbar"> <p>Mistakes: 0</p> </div>
+        <div id="score" class="toolbar"> <p>Score: 100</p> </div>
+        <div id="reset" class="toolbar"> <button>Reset Game</button> </div>
+    </div>
+
+<script>
+    /////////////////////
+    //Declare variables//
+    /////////////////////
+    let selectedImage = "none"; // Uses logical keys: 'a', 'b', 'c', 'd'
+    let selectedSolution = "none"; // Uses logical keys: 'a', 'b', 'c', 'd'
+    let timer = 0;
+    let mistakes = 0;
+    let score = 100;
+    let totalPenalty = 0; // For calculating score based on mistakes
+
+    // These arrays store the LOGICAL keys of available items.
+    let availableImages = ["a", "b", "c", "d"];
+    let availableSolutions = ["a", "b", "c", "d"];
+
+    // Store user-provided data
+    const itemData = {
+        a: { imgSrc: "", solutionText: "" },
+        b: { imgSrc: "", solutionText: "" },
+        c: { imgSrc: "", solutionText: "" },
+        d: { imgSrc: "", solutionText: "" },
+    };
+
+    let timerColor = "darkgreen";
+    let intervalIdCount;
+
+    // DOM Elements
+    const boardElement = document.getElementById("board");
+    const inputFormContainer = document.getElementById("input-form-container");
+    const confirmInputsBtn = document.getElementById("confirm-inputs-btn");
+
+    const timerDisplayP = document.getElementById('timer').querySelector('p');
+    const mistakesDisplayP = document.getElementById('mistakes').querySelector('p');
+    const scoreDisplayP = document.getElementById('score').querySelector('p');
+    const resetGameBtn = document.getElementById("reset").querySelector("button");
+
+    // Image and Solution Element Mapping (Logical Key to DOM ID)
+    const imageTagIds = { a: "imageTag-1", b: "imageTag-2", c: "imageTag-3", d: "imageTag-4" };
+    const imageContainerIds = { a: "image-1", b: "image-2", c: "image-3", d: "image-4" };
+    const solutionDivIds = { a: "solution-1", b: "solution-2", c: "solution-3", d: "solution-4" }; // These are the containers that get styled and moved
+    const solutionTagIds = { a: "solutionTag-1", b: "solutionTag-2", c: "solutionTag-3", d: "solutionTag-4" }; // These are the <p> tags inside
+
+    ////////////////////////////
+    // Game State Management  //
+    ////////////////////////////
+    function showInputForm() {
+        inputFormContainer.style.display = "grid";
+        boardElement.style.display = "none";
+        if (intervalIdCount) clearInterval(intervalIdCount); // Stop timer if active
+    }
+
+    function showGameBoard() {
+        inputFormContainer.style.display = "none";
+        boardElement.style.display = "grid";
+        boardElement.style.opacity = "1";
+    }
+
+    ///////////////////////////////////
+    // Input Form Handling           //
+    ///////////////////////////////////
+    confirmInputsBtn.addEventListener("click", handleInputSubmission);
+
+    function handleInputSubmission() {
+        itemData.a.imgSrc = document.getElementById("input-image-1").value;
+        itemData.a.solutionText = document.getElementById("input-solution-1").value;
+        itemData.b.imgSrc = document.getElementById("input-image-2").value;
+        itemData.b.solutionText = document.getElementById("input-solution-2").value;
+        itemData.c.imgSrc = document.getElementById("input-image-3").value;
+        itemData.c.solutionText = document.getElementById("input-solution-3").value;
+        itemData.d.imgSrc = document.getElementById("input-image-4").value;
+        itemData.d.solutionText = document.getElementById("input-solution-4").value;
+
+        // Populate the game board elements
+        for (const key of ["a", "b", "c", "d"]) {
+            document.getElementById(imageTagIds[key]).src = itemData[key].imgSrc;
+            document.getElementById(solutionTagIds[key]).innerHTML = itemData[key].solutionText;
+        }
+
+        showGameBoard();
+        startGame(); // Initialize and start the game
+    }
+
+    //////////////////////////////////
+    // Game Initialization and Reset //
+    //////////////////////////////////
+    function initializeApp() {
+        showInputForm();
+        addStaticEventListeners();
+    }
+
+    function startGame() {
+        availableImages = ["a", "b", "c", "d"];
+        availableSolutions = ["a", "b", "c", "d"];
+        selectedImage = "none";
+        selectedSolution = "none";
+
+        // Reset visual states (opacity, transform) for all items
+        ["a", "b", "c", "d"].forEach(key => {
+            // Images
+            const imgTag = document.getElementById(imageTagIds[key]);
+            if (imgTag) {
+                 imgTag.style.opacity = "1";
+                 imgTag.parentNode.style.opacity = "1"; // Reset container opacity too
+            }
+            // Solutions (reset the container div)
+            const solDiv = document.getElementById(solutionDivIds[key]);
+            if (solDiv) {
+                solDiv.style.opacity = "1";
+                solDiv.style.transform = "scale(1)";
+            }
+        });
+        resetSizes("all"); // Also calls scaling reset
+
+
+        totalPenalty = 0;
+        mistakes = 0;
+        timer = 0;
+        score = 100;
+
+        mistakesDisplayP.innerHTML = 'Mistakes: ' + mistakes;
+        scoreDisplayP.innerHTML = 'Score: ' + score;
+        timerDisplayP.innerHTML = 'Timer: ' + (timer / 100).toFixed(2);
+        timerColor = "darkgreen";
+        timerDisplayP.style.color = timerColor;
+
+        randomizeSolutionPositions();
+
+        if (intervalIdCount) clearInterval(intervalIdCount);
+        intervalIdCount = setInterval(timerCount, 10);
+        mainLoop(); // Initial display update
+    }
+
+    resetGameBtn.addEventListener("click", handleResetButtonClick);
+
+    function handleResetButtonClick() {
+        boardElement.style.opacity = "0";
+        setTimeout(() => {
+            if (confirm("Ready To Start Again? This will reset the game with the current images and solutions.")) {
+                startGame(); // This will re-initialize everything including timer and opacities
+                boardElement.style.opacity = "1";
+            } else {
+                boardElement.style.opacity = "1"; // Restore opacity if cancelled
+            }
+        }, 20); // Small delay for opacity to render before confirm dialog
+    }
+
+    ////////////////////
+    // Event Listeners //
+    ////////////////////
+    function addStaticEventListeners() {
+        // Image Clicks - Event delegation on containers
+        for (const key of ["a", "b", "c", "d"]) {
+            document.getElementById(imageContainerIds[key]).addEventListener("click", () => selectImage(key));
+            document.getElementById(solutionDivIds[key]).addEventListener("click", () => selectSolution(key));
+        }
+    }
+
+    ////////////////////
+    //Selecting Items //
+    ////////////////////
+    function selectImage(imageKey) {
+        if (availableImages.indexOf(imageKey) === -1) return; // Already paired
+
+        if (selectedImage === imageKey) { // Clicked same image again (deselect)
+            scaleItem(imageKey, false, "image");
+            selectedImage = "none";
+        } else { // Clicked a new image
+            if (selectedImage !== "none") {
+                scaleItem(selectedImage, false, "image"); // Descale previous
+            }
+            selectedImage = imageKey;
+            scaleItem(imageKey, true, "image");
+            checkPair();
+        }
+    }
+
+    function selectSolution(solutionKey) {
+        if (availableSolutions.indexOf(solutionKey) === -1) return; // Already paired
+
+        if (selectedSolution === solutionKey) { // Clicked same solution again (deselect)
+            scaleItem(solutionKey, false, "solution");
+            selectedSolution = "none";
+        } else { // Clicked a new solution
+            if (selectedSolution !== "none") {
+                scaleItem(selectedSolution, false, "solution"); // Descale previous
+            }
+            selectedSolution = solutionKey;
+            scaleItem(solutionKey, true, "solution");
+            checkPair();
+        }
+    }
+
+    function scaleItem(itemKey, isSelected, itemType) {
+        let element;
+        if (itemType === "image") {
+            element = document.getElementById(imageTagIds[itemKey]); // Scale the <img> tag
+        } else { // solution
+            element = document.getElementById(solutionDivIds[itemKey]); // Scale the solution container <div>
+        }
+
+        if (!element) return;
+
+        if (isSelected) {
+            element.style.transform = "scale(1.20)"; // Slightly less aggressive scaling
+            if (itemType === "image") element.style.zIndex = "10";
+        } else {
+            element.style.transform = "scale(1)";
+            if (itemType === "image") element.style.zIndex = "0";
+        }
+    }
+
+    // Resets transforms for all items of a type, or all.
+    function resetSizes(area) {
+        if (area === "images" || area === "all") {
+            for (const key of ["a", "b", "c", "d"]) {
+                const img = document.getElementById(imageTagIds[key]);
+                if (img) {
+                    img.style.transform = "scale(1)";
+                    img.style.zIndex = "0";
+                }
+            }
+        }
+        if (area === "solutions" || area === "all") {
+             for (const key of ["a", "b", "c", "d"]) {
+                const solDiv = document.getElementById(solutionDivIds[key]);
+                if (solDiv) {
+                    solDiv.style.transform = "scale(1)";
+                }
+            }
+        }
+    }
+
+    //////////////////////////////////
+    //Randomizing Solution Positions//
+    //////////////////////////////////
+    function randomizeSolutionPositions() {
+        // Get the logical keys for solutions that are still available or all if resetting
+        let solutionsToPlace = [...availableSolutions];
+        if (solutionsToPlace.length === 0 && ["a", "b", "c", "d"].every(s => !availableSolutions.includes(s))) {
+             // If all solved, game is over or resetting, use all keys for placement logic
+            solutionsToPlace = ["a", "b", "c", "d"];
+        }
+
+
+        // Shuffle the order of these logical keys
+        for (let i = solutionsToPlace.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [solutionsToPlace[i], solutionsToPlace[j]] = [solutionsToPlace[j], solutionsToPlace[i]];
+        }
+
+        // Assign grid areas based on the shuffled order
+        // The DOM has #solution-1, #solution-2 etc. (which are logical items 'a', 'b' etc.)
+        // We change their grid-area property.
+        const gridAreas = ["s1", "s2", "s3", "s4"];
+        solutionsToPlace.forEach((logicalKey, index) => {
+            const solutionDiv = document.getElementById(solutionDivIds[logicalKey]);
+            if(solutionDiv) { // Check if the element actually exists
+                 solutionDiv.style.gridArea = gridAreas[index];
+            }
+        });
+    }
+
+
+    /////////////////////
+    //Pairing Solutions//
+    /////////////////////
+    function checkPair() {
+        if (selectedImage !== "none" && selectedSolution !== "none") {
+            if (selectedSolution === selectedImage) { // Correct pair (both are logical keys e.g. 'a' === 'a')
+                const matchedKey = selectedImage; // or selectedSolution
+
+                // Visual feedback for matched items
+                document.getElementById(imageTagIds[matchedKey]).parentNode.style.opacity = "0.5"; // Fade image container
+                document.getElementById(solutionDivIds[matchedKey]).style.opacity = "0.5";     // Fade solution container
+
+                // Remove from available items
+                availableImages = availableImages.filter(key => key !== matchedKey);
+                availableSolutions = availableSolutions.filter(key => key !== matchedKey);
+
+                // Reset selections and scales
+                scaleItem(selectedImage, false, "image"); // Descale
+                scaleItem(selectedSolution, false, "solution"); // Descale
+                selectedImage = "none";
+                selectedSolution = "none";
+
+
+                if (availableSolutions.length === 0) { // All pairs matched
+                    clearInterval(intervalIdCount);
+                    setTimeout(() => {
+                        alert(`Congratulations! You've matched all pairs.\nFinal Score: ${score}`);
+                    }, 100);
+                }
+            } else { // Wrong pair
+                mistakeMade();
+                // Briefly indicate wrong, then deselect
+                const tempSelectedImage = selectedImage;
+                const tempSelectedSolution = selectedSolution;
+
+                // Could add a "shake" or "error color" animation here
+
+                setTimeout(() => {
+                    if (document.getElementById(imageTagIds[tempSelectedImage])) scaleItem(tempSelectedImage, false, "image");
+                    if (document.getElementById(solutionDivIds[tempSelectedSolution])) scaleItem(tempSelectedSolution, false, "solution");
+                }, 300); // Keep highlight for a bit
+
+                selectedImage = "none";
+                selectedSolution = "none";
+            }
+        }
+    }
+
+    /////////////////
+    //Toolbar Items//
+    /////////////////
+    function timerCount() {
+        timer++;
+        mainLoop();
+    }
+
+    function mainLoop() {
+        timerDisplayP.innerHTML = 'Timer: ' + (timer / 100).toFixed(2);
+        updateScore();
+        if (timer >= 1000 && timerColor !== 'red') { // 10 seconds
+            timerColor = 'red';
+            timerDisplayP.style.color = timerColor;
+        } else if (timer < 1000 && timerColor === 'red') { // Reset to green if timer goes below (e.g. on reset)
+            timerColor = 'darkgreen';
+            timerDisplayP.style.color = timerColor;
+        }
+    }
+
+    function mistakeMade() {
+        mistakes++;
+        totalPenalty += 15;
+        mistakesDisplayP.innerHTML = 'Mistakes: ' + mistakes;
+        updateScore(); // Update score display immediately
+    }
+
+    function updateScore() {
+        let timePenaltyValue = 0;
+        if (timer > 1000) { // After 10 seconds (1000 * 10ms ticks)
+            const secondsOver = (timer - 1000) / 100; // Convert ticks to seconds
+            timePenaltyValue = Math.min(3 * secondsOver, 60); // 3 points per second over, max 60
+        }
+        let currentScore = 100 - totalPenalty - timePenaltyValue;
+        score = Math.max(0, Math.round(currentScore));
+        scoreDisplayP.innerHTML = 'Score: ' + score;
+    }
+
+    ///////////////////
+    // Start the App //
+    ///////////////////
+    initializeApp();
+
+</script>
+</body>
+</html>
