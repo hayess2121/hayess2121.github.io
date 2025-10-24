@@ -1,6 +1,6 @@
 document.getElementById("button").addEventListener("click", doa) // event listener do not delete
 //variable declarations below
-var number         
+var number = 0
 var debug = false
 //variable declarations above
 //redirects below here
@@ -36,39 +36,33 @@ function doa() //main function that does things
         random()
     }
         
-    if(number === 99) // redirects to clicker
-    {
+    switch (number) {
+    case 99:
         redirects.clicker()
-    }
-    else if(number === 98) // blows up button
-    {
+        break
+    case 98:
         button.style.transform = "scale(20)"
         button.style.transition = "transform 10s ease"
-        setTimeout(blowup,10100)
-    }
-    else if(number === 97) //seizure mode
-    {
+        setTimeout(blowup, 10100)
+        break
+    case 97:
         alert("seizure mode incoming. Leave now if you are epileptic.")
         document.body.style.animationName = "color"
-    }
-    else if(number === 96)//tells you to mess off
-    {
+        break
+    case 96:
         alert("Screw off")
-            
-    }
-    else if(number === 95) 
-    {
+        break
+    case 95:
         alert("You might need these soon")
         redirects.trojan() 
-    }
-    else if(number === 69)//rick roll
-    {
+        break
+    case 69:
         redirects.rick_roll()
-    }
-    else if(number === 0)//error 404
-    {
+        break
+    case 0:
         alert("ERROR 404 NOT FOUND")
         document.body.style.backgroundImage = "url(https://upload.wikimedia.org/wikipedia/commons/3/3b/Windows_9X_BSOD.png)"
+        break
     }
     return number
 }
