@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>image filtering</title>
+    <style>
+        img {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <img id="duck" src="ralsei loosh.webp">
+    <canvas id="canvas" width="300" height="300"></canvas>
+</body>
+</html>
+
+<script>
+    let canvas
+    let ctx
+    let imageData
+    let duck
+    
+    window.addEventListener("load", main);
+    
+    function main() {
+        canvas = document.getElementById("canvas")
+        ctx = canvas.getContext("2d")
+        let imageWidthInPixels = 300 //if you change this change it as well up in the canvas on line 16
+        let imageHeightInPixels = 300
+
+        duck = document.getElementById("duck")
+        ctx.drawImage(duck, 0, 0, 300, 300)
+
+        imageData = ctx.getImageData(0, 0, 300, 300)
+        let image = make2dArrayOutOf1dArray(imageData.data, imageWidthInPixels, imageHeightInPixels)
+
+        for (let i = 0 ; i < image.length / 2 ; i++)
+        {
+            for(let j = 0 ; j < image[i].length ; j++)
+        
+            { 
+                image[i][j] += 100
+            }
+    
+        }
+        
+
+        console.log(image)
+
+         write2DArrayToImageData(imageData, image, imageWidthInPixels)
+        ctx.putImageData(imageData,0,0)
+    }
+
+    function make2dArrayOutOf1dArray(array, width, height) {
+        let newArray = []
+        width = width * 4 //4 because of RGBA, each pixel has 4 values
+        for (let i = 0; i < height; i++) {
+            newArray[i] = []
+            for (let j = 0; j < width; j++) {
+                newArray[i][j] = array[i * width + j]
+            }
+        }
+        return newArray
+    }
+
+    function write2DArrayToImageData(imageData, array, width) {
+        //create new 1d array that is an unclamped8bit array
+        let newArray = new Uint8ClampedArray(array.length * array[0].length)
+        let count = 0
+        for (let i = 0; i < array.length; i++) {
+            for (let j = 0; j < array[i].length; j++) {
+                imageData.data[count++] = array[i][j]
+            }
+        }
+        return newArray
+    }
+
+</script>
