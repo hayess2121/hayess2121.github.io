@@ -14,16 +14,74 @@ The CSS ids you will work with are:
 ///////////////////////////////////////////////////////////////////////
 
 // TODO 2: Implement bubbleSort
-
+async function bubbleSort(array) {
+    for (let i = 0; i < array.length; i++) {
+        for (let j = array.length - 1 ; j > i; j--) {
+            if (array[j].value < array[j - 1].value) {
+                swap(array, j, j - 1)
+                updateCounter(bubbleCounter);
+                await sleep();
+            }
+        }
+    }
+    //     ITERATE over the array from i = 0 to i = length - 1
+    //  ITERATE over the array from j = length - 1 to j = i + 1
+    //    IF array[j]'s value < array[j - 1]'s value
+    //      swap array[j] and array[j - 1]
+}
 
 // TODO 3: Implement quickSort
+async function quickSort(array,left,right)
+{
+if(right - left > 0)
+{
+    return 
+}
+else
+{
+let index = await partition(array,left,right)
+if(left < index - 1)
+{
+    await quickSort(array,left,index - 1)
+}
+if(right < index)
+{
+    await quickSort(array,index,right)
+}
+}
 
+//     FUNCTION quicksort(array, left, right):
+//   IF (right - left) > 0:
+//     index = partition(array, left, right)
+//     IF left < (index - 1):
+//       quickSort(array, left, index - 1)
+//     IF index < right:
+//       quicksort(array, index, right)
+}
 
 // TODOs 4 & 5: Implement partition
+async function partition(array,left,right)
+{
+    
+// FUNCTION partition (array, left, right):
+//   pivot = select a pivot
+//   WHILE left < right:
+//     WHILE array[left] < pivot { left++ }
+//     WHILE array[right] > pivot { right-- }
+//     IF left < right:
+//       swap array[left] and array[right]
 
+//   RETURN left + 1
+}
 
 // TODO 1: Implement swap
-
+function swap(array, i, j) {
+    let RAM = array[i]
+    array[i] = array[j]
+    array[j] = RAM
+    drawSwap(array, i, j)
+    return
+}
 
 ///////////////////////////////////////////////////////////////////////
 /////////////////////// YOUR WORK GOES ABOVE HERE /////////////////////
@@ -32,12 +90,12 @@ The CSS ids you will work with are:
 //////////////////////////// HELPER FUNCTIONS /////////////////////////
 
 // this function makes the program pause by SLEEP_AMOUNT milliseconds whenever it is called
-function sleep(){
+function sleep() {
     return new Promise(resolve => setTimeout(resolve, SLEEP_AMOUNT));
 }
 
 // This function draws the swap on the screen
-function drawSwap(array, i, j){
+function drawSwap(array, i, j) {
     let element1 = array[i];
     let element2 = array[j];
 
@@ -48,6 +106,6 @@ function drawSwap(array, i, j){
 }
 
 // This function updates the specified counter
-function updateCounter(counter){
+function updateCounter(counter) {
     $(counter).text("Move Count: " + (parseFloat($(counter).text().replace(/^\D+/g, '')) + 1));
 }
